@@ -1,0 +1,114 @@
+import keyword
+VOGALS = set('aáeéiíoóuúöőüű')
+
+def count_vowels(text: str) -> int:
+    return sum(1 for ch in text.lower() if ch in VOGALS)
+if __name__ == "__main__":
+    szoveg = input("Adj meg egy szöveget: ")
+    db = count_vowels(szoveg)
+    print(f"A szöveg {db} magánhangzót tartalmaz.")
+
+
+
+
+
+import keyword
+szam = input("Adj meg egy egész számot (pl. 850): ")
+
+if not szam.lstrip('-').isdigit():
+    print("Hiba: érvénytelen szám!")
+    exit(1)
+
+osszeg = 0
+for c in szam:
+    osszeg += int(c)
+
+print(f"A számjegyek összege: {osszeg}")
+
+
+
+
+import keyword
+mondat = input("Adj meg egy mondatot: ")
+
+szavak = mondat.split()
+szavak_vegre = list(reversed(szavak))
+eredmeny = ' '.join(szavak_vegre)
+
+print("Visszafelé rendezett szavak:", eredmeny)
+
+
+
+import keyword
+from collections import Counter
+
+def main() -> None:
+    print("Írj be számokat.  Hozzáadáshoz nyomd az Entert, az üres sorral befejezed.")
+    numbers = []
+
+    while True:
+        s = input("Szám: ").strip()
+        if s == "":
+            break
+        try:
+            numbers.append(int(s))
+        except ValueError:
+            print("Hiba: érvénytelen szám, próbáld újra.")
+            continue
+
+    if not numbers:
+        print("\nNem adtál meg számot.")
+        return
+
+    counter = Counter(numbers)
+    max_occurrences = max(counter.values())
+
+    most_common_vals = [val for val, cnt in counter.items() if cnt == max_occurrences]
+    most_common_val = min(most_common_vals)
+
+    print(f"\nLeggyakoribb szám: {most_common_val}")
+    print(f"Előfordulás száma: {max_occurrences}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+import keyword
+def jelszo_eroseg_jelentkezes() -> bool:
+    """
+
+    :return:
+    """
+    jelszo = input("Adj meg egy jelszót: ")
+
+    hosszu = len(jelszo) >= 8
+
+    szam = any(k.isdigit() for k in jelszo)
+
+    nagy = any(k.isupper() for k in jelszo)
+
+    kis = any(k.islower() for k in jelszo)
+
+    eroseg = hosszu and szam and nagy and kis
+
+    if eroseg:
+        print("A jelszó erős.")
+    else:
+        print("A jelszó nem elég erős.")
+        if not hosszu:
+            print("- Legalább 8 karakter hosszú kell lennie.")
+        if not szam:
+            print("- Tartalmaznia kell egy számot.")
+        if not nagy:
+            print("- Tartalmaznia kell egy nagybetűt.")
+        if not kis:
+            print("- Tartalmaznia kell egy kisbetűt.")
+
+    return eroseg
+
+if __name__ == "__main__":
+    jelszo_eroseg_jelentkezes()
